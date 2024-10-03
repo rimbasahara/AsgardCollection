@@ -1,0 +1,19 @@
+section {
+  background-color: #9a616d;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.img-fluid {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.fas {
+  color: #ff6219;
+}
+
+h5 {
+  letter-spacing: 1px;
+}

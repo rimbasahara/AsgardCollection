@@ -1,0 +1,9 @@
+nav {
+  font-family: Philosopher;
+  font-weight: bold;
+}
+
+.navbar-brand {
+  width: 12rem;
+  height: 3.5rem;
+}

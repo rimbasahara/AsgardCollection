@@ -1,0 +1,10 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "Philosopher";
+  src: local("Philosopher"),
+    url("./assets/fonts/Philosopher/Philosopher-Regular.ttf") format("opentype");
+  font-weight: normal;
+}
