@@ -13,3 +13,4 @@ export default async function LoginUsers() {
     console.error(error);
   }
 }
+LoginUsers();

@@ -33,16 +33,6 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/about"
-                  className={`nav-link ${
-                    location.pathname === "/listproduct" ? "active" : ""
-                  }`}
-                >
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
                   to="/login"
                   className={`nav-link ${
                     location.pathname === "/login" ? "active" : ""
@@ -73,9 +63,9 @@ const Navbar = () => {
           <form className="d-flex">
             <button
               type="submit"
-              class="btn btn-outline-dark position-relative"
+              className="btn btn-outline-dark position-relative"
             >
-              <span class="position-absolute top-0 ms-1 start-90 translate-middle badge rounded-pill bg-warning">
+              <span className="position-absolute top-0 ms-1 start-90 translate-middle badge rounded-pill bg-warning">
                 0
               </span>
               <i className="bi-cart-fill me-1"></i>
