@@ -23,16 +23,19 @@ const ProductCard = ({ product }) => {
         <p>{product.description}</p>
         <div className="product-bottom-details">
           <div className="product-price">
-            <small>${(product.price * 2).toFixed(2)}</small>$
+            {/* <small>${(product.price * 2).toFixed(2)}</small> */}$
             {product.price.toFixed(2)}
           </div>
           <div className="product-links">
-            <a href="">
-              <i className="fa fa-heart"></i>
-            </a>
-            <a href="">
-              <i className="fa fa-shopping-cart"></i>
-            </a>
+            <i className="fa fa-shopping-cart">
+              <button
+                type="submit"
+                className="btn btn-outline-dark position-relative"
+              >
+                <i className="bi-cart-fill me-1"></i>
+                Add
+              </button>
+            </i>
           </div>
         </div>
       </div>
