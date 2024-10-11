@@ -1,8 +1,41 @@
 import NavbarLogo from "../assets/logo/NavLogo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("userToken");
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const storedCartCount = localStorage.getItem("cartCount");
+    if (storedCartCount) {
+      setCartCount(parseInt(storedCartCount));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
+  const handleCart = () => {
+    if (!isLoggedIn && !token) {
+      if (window.confirm("Please login first")) {
+        return navigate("/login");
+      }
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid px-4 px-lg-5">
@@ -34,20 +67,28 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/login"
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "nav-link isPending"
-                      : isActive
-                      ? "nav-link active"
-                      : "nav-link"
-                  }
-                >
-                  Login
-                </NavLink>
-              </li>
+              {isLoggedIn ? (
+                <li className="nav-item">
+                  <button className="nav-link" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    to="/login"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "nav-link isPending"
+                        : isActive
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -58,27 +99,17 @@ const Navbar = () => {
         </div>
         <div className="navbar-right">
           <form className="d-flex">
-            <NavLink
-              to="/cartlist"
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "nav-link isPending"
-                  : isActive
-                  ? "nav-link active"
-                  : "nav-link"
-              }
+            <button
+              type="submit"
+              className="btn btn-outline-dark position-relative"
+              onClick={handleCart}
             >
-              <button
-                type="submit"
-                className="btn btn-outline-dark position-relative"
-              >
-                <span className="position-absolute top-0 ms-1 start-90 translate-middle badge rounded-pill bg-warning">
-                  0
-                </span>
-                <i className="bi-cart-fill me-1"></i>
-                Cart
-              </button>
-            </NavLink>
+              <span className="position-absolute top-0 ms-1 start-90 translate-middle badge rounded-pill bg-warning">
+                {cartCount}
+              </span>
+              <i className="bi-cart-fill me-1"></i>
+              Cart
+            </button>
           </form>
         </div>
       </div>

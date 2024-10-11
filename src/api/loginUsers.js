@@ -1,16 +1,14 @@
 import axios from "axios";
 
-export default async function LoginUsers() {
+export default async function LoginUsers(username, password) {
   try {
-    const response = await axios.post("https://fakestoreapi.com/auth/login", {
-      username: "johnd",
-      password: "m38rmF$",
+    const response = await axios.post("https://fakestoreapi.com/auth/login/", {
+      username,
+      password,
     });
-    const token = response.data.token;
-    localStorage.setItem("userToken", token);
-    return response;
+    return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error logging in:", error);
+    throw error;
   }
 }
-LoginUsers();

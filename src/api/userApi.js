@@ -18,4 +18,3 @@ export default async function GetUsers() {
     console.log("Error while getting data: ", err);
   }
 }
-GetUsers();

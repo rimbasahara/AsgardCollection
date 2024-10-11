@@ -8,5 +8,3 @@ export default async function ApiProducts() {
     console.log("Error while getting data: ", err);
   }
 }
-
-// const ApiProducts = () => {};

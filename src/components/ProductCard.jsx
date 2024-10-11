@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
 import "../styles/ProductCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, handleCart }) => {
   const uppercaseHandle = product.category.toUpperCase();
+  let quantity = product.rating.count;
 
   return (
     <div className="product-card">
-      <div className="badge rounded-pill text-bg-primary">
-        Qty: {product.rating.count}
-      </div>
+      <div className="badge rounded-pill text-bg-primary">Qty: {quantity}</div>
       <div className="product-tumb">
         <img src={product.image} alt={product.title} />
       </div>
@@ -22,18 +20,18 @@ const ProductCard = ({ product }) => {
 
         <p>{product.description}</p>
         <div className="product-bottom-details">
-          <div className="product-price">
-            {/* <small>${(product.price * 2).toFixed(2)}</small> */}$
-            {product.price.toFixed(2)}
-          </div>
+          <div className="product-price">$ {product.price.toFixed(2)}</div>
           <div className="product-links">
             <i className="fa fa-shopping-cart">
               <button
                 type="submit"
                 className="btn btn-outline-dark position-relative"
+                onClick={() => {
+                  handleCart(product.id, product.rating.count + 1);
+                }}
               >
                 <i className="bi-cart-fill me-1"></i>
-                Add
+                Add to cart
               </button>
             </i>
           </div>
