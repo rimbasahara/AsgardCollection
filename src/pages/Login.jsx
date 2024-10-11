@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import LoginUsers from "../api/loginUsers";
 import {
-  // setUsername,
-  // setPassword,
+  setUsername,
+  setPassword,
   setToken,
   setError,
 } from "../app/loginReducer";
